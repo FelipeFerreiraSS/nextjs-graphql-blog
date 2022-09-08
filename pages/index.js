@@ -8,8 +8,8 @@ export default function Home({ posts }) {
   return (
     <div>
       {posts.map((post) => (
-        <div>
-          <Link key={post.id} href={`/blog/${post.slug}`}>
+        <div key={post.id}>
+          <Link href={`/blog/${post.slug}`}>
             <a>{post.title}</a>
           </Link>
           <p>{post.date}</p>

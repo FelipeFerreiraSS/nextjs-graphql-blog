@@ -1,10 +1,16 @@
 import { GraphQLClient } from 'graphql-request';
+import Image from 'next/image';
 
 export default function Post({ post }) {
   
   return (
     <div>
-      <img src={post.coverImage.url} />
+      <Image 
+        src={post.coverImage.url}
+        alt={"image"}
+        width={900} 
+        height={400}
+      />
 
       <div>
         <div>
