@@ -1,16 +1,25 @@
 import { GraphQLClient } from 'graphql-request';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Post({ post }) {
   
   return (
     <div>
-      <Image 
+      <div>
+        <Link href={"/"}>
+          <button>Home</button>
+        </Link>
+      </div>
+
+      <Image
         src={post.coverImage.url}
-        alt={"image"}
-        width={900} 
+        alt="Landscape picture"
+        width={800}
         height={400}
       />
+
+      {/*<img src={post.coverImage.url} alt="Picture of the author"/>*/}
 
       <div>
         <div>
@@ -39,7 +48,7 @@ export async function getStaticProps({ params }) {
           html
         }
         coverImage {
-          url(transformation: {image: {resize: {width: 900, height: 400, fit: crop}}})
+          url(transformation: {image: {resize: {width: 800, height: 400, fit: crop}}})
         }
       }
     }
