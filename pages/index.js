@@ -1,43 +1,20 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Link from 'next/link';
-import { GraphQLClient } from 'graphql-request';
+import { Button, Container, Typography } from '@mui/material';
 
-export default function Home({ posts }) {
+export default function Home() {
 
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <Link href={`/blog/${post.slug}`}>
-            <a>{post.title}</a>
+    <>
+      <Container maxWidth="lg">
+        <Typography variant='h1'>Home</Typography>
+        <div>
+          <Link href={"/blog/"}>
+              <Button variant="contained">Blog</Button>
           </Link>
-          <p>{post.date}</p>
         </div>
-      ))}
-    </div>
+      </Container>
+    </>
   );
 }
 
-export async function getStaticProps() {
-  const hygraph = new GraphQLClient(process.env.NEXT_PUBLIC_CONTENT_API);
 
-  const { posts } = await hygraph.request(
-    `
-      {
-        posts {
-          title
-          slug
-          date
-          id
-        }
-      }
-    `
-  );
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
