@@ -36,8 +36,8 @@ export default function Posts({ posts }) {
           </Box>
             <Grid container spacing={3}>
             {posts.map((post) => (
-            <Grid item xs={12} sm={6} md={4}>
-              <Card key={post.id}>
+            <Grid key={post.id} item xs={12} sm={6} md={4}>
+              <Card>
               <Link href={`/blog/${post.slug}`}>
                 <CardActionArea>
                   <CardMedia
