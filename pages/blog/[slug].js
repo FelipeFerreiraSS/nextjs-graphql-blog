@@ -1,38 +1,64 @@
+import { Box, Container, Typography } from '@mui/material';
+import { fontSize } from '@mui/system';
 import { GraphQLClient } from 'graphql-request';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import '../../styles/Home.module.css'
+
 export default function Post({ post }) {
-  
+
   return (
-    <div>
+    <Container maxWidth="md">
       <div>
-        <Link href={"/"}>
-          <button>Home</button>
+        <Link href={"/blog/"}>
+          <button>Blog</button>
         </Link>
       </div>
 
-      <Image
-        src={post.coverImage.url}
-        alt="Landscape picture"
-        width={800}
-        height={400}
-      />
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box
+          component="img"
+          sx={{
+            height: '100%',
+            width: '85%',
+            borderRadius: '10px',
+          }}
+          alt="The house from the offer."
+          src={post.coverImage.url}
+        />
+      </Box>
+      
 
-      {/*<img src={post.coverImage.url} alt="Picture of the author"/>*/}
-
-      <div>
+      <Box>
         <div>
-          <h1>
+          
+          <Box
+            sx={{
+              typography: 'h1',
+              fontSize: '30px',
+              textAlign: 'center',
+              fontWeight: 'bold',
+              marginTop: '30px',
+              fontSize: { xs: 30, sm: 30, md: 40, lg: 50 },
+            }}
+          >
+          
             {post.title}
-          </h1>
+          </Box>
         </div>
         
-        <div
+        <Box
+          sx={{
+            img: {
+              maxWidth: { xs: 390, sm: 720, md: 850, lg: 850 },
+              maxHeight: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' },
+            }
+          }}
           dangerouslySetInnerHTML={{ __html: post.contentHtml.html }} 
         />
-      </div>
-    </div>
+      </Box>
+    </Container>
   )
 }
 
