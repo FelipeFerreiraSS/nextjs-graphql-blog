@@ -1,79 +1,79 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import { GraphQLClient } from 'graphql-request';
-import { Avatar, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
 
 export default function Posts({ posts }) {
   return (
     <>
-      <Container maxWidth="lg">
-          <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: '30px', marginTop: '30px'}}>
+      <main>
+          <div >
             <div>
                 <Link href={"/"}>
-                    <Button variant="contained" sx={{ marginRight: '20px' }}>Home</Button>
+                    <button  >Home</button>
                 </Link>
             </div>
             <div>
                 <Link href={"/blog/"}>
-                    <Button variant="contained" sx={{ marginRight: '20px' }}>Blog</Button>
+                    <button>Blog</button>
                 </Link>
             </div>
             <div>
                 <Link href={"/blog/tags/html"}>
-                    <Button variant="contained" sx={{ marginRight: '20px' }}>HTML</Button>
+                    <button>HTML</button>
                 </Link>
             </div>
             <div>
                 <Link href={"/blog/tags/css"}>
-                    <Button variant="contained" sx={{ marginRight: '20px' }}>CSS</Button>
+                    <button>CSS</button>
                 </Link>
             </div>
             <div>
                 <Link href={"/blog/tags/javascript"}>
-                    <Button variant="contained" sx={{ marginRight: '20px' }}>Java Script</Button>
+                    <button>Java Script</button>
                 </Link>
             </div>
-          </Box>
-            <Grid container spacing={3}>
+          </div>
+            <div>
             {posts.map((post) => (
-            <Grid key={post.id} item xs={12} sm={6} md={4}>
-              <Card>
+            <div key={post.id}>
+              <div>
               <Link href={`/blog/${post.slug}`}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    image={post.coverImage.url}
-                    title="Contemplative Reptile"
+                <div>
+                <Image
+                    src={post.coverImage.url}
+                    alt="Picture of the author"
+                    width={200}
+                    height={200}
                   />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                  <div>
+                    <h2>
                       {post.title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    </h2>
+                    <post>
                       {post.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+                    </post>
+                  </div>
+                </div>
                 </Link>
-                <CardActions>
-                  <Box sx={{ display: 'flex', flexDirection: 'row', }}>
-                    <Avatar src={post.authors[0].picture.url} />
-                    <Box ml={2}>
-                      <Typography variant="subtitle2" component="p">
+                <div>
+                  <div>
+                    {post.authors[0].picture.url}
+                    <div ml={2}>
+                      <p>
                         {post.authors[0].name}
-                      </Typography>
-                      <Typography variant="subtitle2" color="textSecondary" component="p">
+                      </p>
+                      <p>
                         {post.date}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </CardActions>
-              </Card>
-            </Grid>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             ))}
-            </Grid>
+            </div>
           
-      </Container>
+      </main>
     </>
   );
 }
