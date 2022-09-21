@@ -7,37 +7,38 @@ import Link from 'next/link';
 export default function Post({ post }) {
 
   return (
-    <main>
-      <div>
-        <Link href={"/blog/"}>
-          <button>Blog</button>
-        </Link>
-      </div>
 
-      <div>
-        <Image
+    <div className="relative pb-16 bg-white overflow-hidden bg-gray-800">
+      
+        {/*<Image
+          className="w-3/4 h-auto mx-auto rounded-xl object-cover"
           src={post.coverImage.url}
           alt="Picture of the author"
-          width={200}
-          height={200}
-        />
-        
-      </div>
+          width={100}
+          height={75}
+        />*/}
       
 
-      <div>
-        <div>
-          
+      <figure>
+        <img className="w-3/4 h-auto mx-auto rounded-xl object-cover" src={post.coverImage.url} />
+      </figure>
+      <div className="relative px-4 pt-16 sm:px-6 lg:px-8">
+        <div className="text-lg max-w-prose mx-auto">
           <h1>
-            {post.title}
+            <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-100 sm:text-5xl">
+              {post.title}
+            </span>
           </h1>
         </div>
         
-        <div
+        
+        <div 
+          className="mt-8 prose prose-img:rounded-xl prose-slate mx-auto lg:prose-lg dark:prose-invert" 
           dangerouslySetInnerHTML={{ __html: post.contentHtml.html }} 
         />
-      </div>
-    </main>
+        </div>
+        
+    </div>
   )
 }
 

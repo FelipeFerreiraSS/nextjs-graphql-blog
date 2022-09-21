@@ -2,80 +2,38 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { GraphQLClient } from 'graphql-request';
 
+import LinksTags from '../../components/LinksTags';
+
 export default function Posts({ posts }) {
   return (
-    <>
-      <div>
-          <div >
-            <div>
-                <Link href={"/"}>
-                    <button>Home</button>
+    <div>
+      <LinksTags />
+      <div className="bg-gray-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl py-10 sm:py-10 lg:max-w-none lg:py-10">
+            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+              {posts.map((post) => (
+                <Link key={post.id} href={`/blog/${post.slug}`}>
+                  <div className="group relative cursor-pointer">
+                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                      <img
+                        src={post.coverImage.url}
+                        alt="teste"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <h1 className="mt-2 text-3xl text-gray-100">
+                      {post.title}
+                    </h1>
+                    <p className="text-sm font-semibold text-gray-300 mb-8 mt-2">{post.description}</p>
+                  </div>
                 </Link>
-            </div>
-            <div>
-                <Link href={"/blog/"}>
-                    <button>Blog</button>
-                </Link>
-            </div>
-            <div>
-                <Link href={"/blog/tags/html"}>
-                    <button>HTML</button>
-                </Link>
-            </div>
-            <div>
-                <Link href={"/blog/tags/css"}>
-                    <button>CSS</button>
-                </Link>
-            </div>
-            <div>
-                <Link href={"/blog/tags/javascript"}>
-                    <button>Java Script</button>
-                </Link>
+              ))}
             </div>
           </div>
-            <div>
-            {posts.map((post) => (
-            <div key={post.id}>
-              <div>
-              <Link href={`/blog/${post.slug}`}>
-                <div>
-                  <Image
-                    src={post.coverImage.url}
-                    alt="Picture of the author"
-                    width={200}
-                    height={200}
-                  />
-                    
-                  <div>
-                    <h2>
-                      {post.title}
-                    </h2>
-                    <p>
-                      {post.description}
-                    </p>
-                  </div>
-                </div>
-                </Link>
-                <div>
-                  <div>
-                    {post.authors[0].picture.url}
-                    <div>
-                      <p>
-                        {post.authors[0].name}
-                      </p>
-                      <p>
-                        {post.date}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            ))}
-            </div>
-          
-      </div>
-    </>
+        </div>
+      </div>   
+    </div>
   );
 }
 

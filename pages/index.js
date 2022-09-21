@@ -5,10 +5,12 @@ export default function Home() {
   return (
     <>
       <div>
-        <h1>Home</h1>
+        <h1 class="text-3xl font-bold underline">
+          Home
+        </h1>
         <div>
           <Link href={"/blog/"}>
-              <button>Blog</button>
+              <a class="text-sky-500 hover:text-sky-600">Blog</a>
           </Link>
         </div>
       </div>
